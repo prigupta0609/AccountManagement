@@ -13,7 +13,7 @@ import com.bank.dao.core.TransactionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CreditWrapper implements ITransactionWrapper {
 
@@ -21,7 +21,7 @@ public class CreditWrapper implements ITransactionWrapper {
     private Account payeeAccount;
     private Amount amount;
     private Account receiverAccount;
-    private static List<Transaction> transactionList;
+    private static CopyOnWriteArrayList<Transaction> transactionList;
     private TransactionStatus status;
     private BalanceStatus balanceStatus = null;
     private static DAO dao;

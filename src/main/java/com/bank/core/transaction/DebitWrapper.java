@@ -13,7 +13,7 @@ import com.bank.dao.core.TransactionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class DebitWrapper implements ITransactionWrapper {
 
@@ -22,7 +22,7 @@ public class DebitWrapper implements ITransactionWrapper {
     private Amount amount;
     private Account receiverAccount;
     private TransactionStatus status = TransactionStatus.FAIL;
-    private static List<Transaction> transactionList;
+    private static CopyOnWriteArrayList<Transaction> transactionList;
     private BalanceStatus balanceStatus = null;
     private static DAO dao;
 

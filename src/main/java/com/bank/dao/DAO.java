@@ -7,13 +7,14 @@ import com.bank.dao.user.Customer;
 
 import javax.inject.Singleton;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Singleton
 public class DAO{
 
     private List<Customer> customer;
     private List<Account> account;
-    private List<Transaction> transaction;
+    private CopyOnWriteArrayList<Transaction> transaction;
     private List<BalanceStatus> balanceStatus;
 
     private static DAO INSTANCE = new DAO();
@@ -38,12 +39,12 @@ public class DAO{
         this.account = account;
     }
 
-    public List<Transaction> getTransaction() {
+    public CopyOnWriteArrayList<Transaction> getTransaction() {
         return transaction;
     }
 
     public void setTransaction(List<Transaction> transaction) {
-        this.transaction = transaction;
+        this.transaction = new CopyOnWriteArrayList<>(transaction);
     }
 
     public List<BalanceStatus> getBalanceStatus() {

@@ -2,16 +2,13 @@ package com.bank.core.transaction.helper;
 
 import com.bank.dao.core.BalanceStatus;
 import com.bank.dao.core.Transaction;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.ListIterator;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class AccountHelper {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AccountHelper.class);
 
     public static BalanceStatus getBalanceStatus(List<BalanceStatus> balanceStatusList, int accountNumber) {
         return balanceStatusList.stream().filter(x -> x.getAccountNumber().equals(accountNumber)).findFirst().orElse(null);
@@ -22,8 +19,7 @@ public class AccountHelper {
         return uuid.toString();
     }
 
-    public static Transaction getCurrentTransRecord (List<Transaction> transactionList, String transactionID) {
-        LOGGER.info("Fetch transaction record for transactionID " + transactionID);
+    public static Transaction getCurrentTransRecord (CopyOnWriteArrayList<Transaction> transactionList, String transactionID) {
         ListIterator<Transaction> iterator = transactionList.listIterator();
         while (iterator.hasNext()) {
             Transaction transaction = iterator.next();
