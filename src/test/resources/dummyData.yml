@@ -1,0 +1,37 @@
+customer:
+- id: cust1
+  name: Ram
+- id: cust2
+  name: Shyam
+
+account:
+- number: 1111
+  customerId: cust1
+- number: 2222
+  customerId: cust2
+
+balanceStatus:
+- accountNumber: 1111
+  onHold: false
+  holdAmount: 0.00
+  availableAmount: 100
+- accountNumber: 2222
+  onHold: false
+  holdAmount: 0.00
+  availableAmount: 200.40
+
+transaction:
+- userAccount: 2222
+  transactionType: credit
+  amount: 200.40
+  thirdPartyAccount: 1234
+  dateTime: 2018-07-14T14:31:30+0530
+  currentTransactionID: 12345
+  prevTransactionID: -1
+- userAccount: 1111
+  transactionType: credit
+  amount: 180
+  thirdPartyAccount: 1234
+  dateTime: 2018-07-14T14:31:30+0530
+  currentTransactionID: 12346
+  prevTransactionID: -1

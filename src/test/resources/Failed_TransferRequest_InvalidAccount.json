@@ -1,0 +1,24 @@
+{
+  "payee": {
+    "customer": {
+      "id": "cust2",
+      "name": "Shyam"
+    },
+    "account": {
+      "accountNumber": 3333
+    }
+  },
+  "receiver": {
+    "customer": {
+      "id": "cust1",
+      "name": "Ram"
+    },
+    "account": {
+      "accountNumber": 1111
+    }
+  },
+  "amount": {
+    "value": 10.00,
+    "currency": "EUR"
+  }
+}

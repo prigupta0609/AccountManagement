@@ -1,0 +1,26 @@
+{
+  "payee": {
+    "customer": {
+      "id": "cust2",
+      "name": "Shyam"
+    },
+    "account": {
+      "accountNumber": 2222
+    },
+    "accountBalance": {
+      "value": 190.4
+    }
+  },
+  "receiver": {
+    "customer": {
+      "id": "cust2",
+      "name": "Ram"
+    },
+    "account": {
+      "accountNumber": 1111
+    },
+    "accountBalance": {
+      "value": 110
+    }
+  }
+}
