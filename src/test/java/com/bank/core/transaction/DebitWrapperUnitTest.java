@@ -107,7 +107,7 @@ public class DebitWrapperUnitTest {
         return new DebitWrapper.DebitWrapperBuilder()
                 .withAccountNumber(userAccount)
                 .withAmount(transferableAmount)
-                .withRecieverAccount(thirdPartyAccount)
+                .withReceiverAccount(thirdPartyAccount)
                 .withDAO(Utility.getDummyData());
     }
 

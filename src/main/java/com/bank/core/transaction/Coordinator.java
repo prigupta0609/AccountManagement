@@ -115,10 +115,10 @@ public class Coordinator {
                 return TransactionStatus.SUCCESS;
             }
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
-            LOGGER.error("Unable to commit operation, move to queue for manual intervention for requestID : " + requestID);
             if (e.getCause().getClass().equals(TransactionFailure.class)) {
                 throw (TransactionFailure) ((ExecutionException) e).getCause();
             }
+            LOGGER.error("Unable to commit operation, move to queue for manual intervention for requestID : " + requestID);
             e.printStackTrace();
         }
         return TransactionStatus.FAIL;

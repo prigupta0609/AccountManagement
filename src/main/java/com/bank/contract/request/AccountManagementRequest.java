@@ -1,10 +1,10 @@
 package com.bank.contract.request;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.bank.contract.Amount;
 import com.bank.contract.Payee;
 import com.bank.contract.Receiver;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotNull;
 

@@ -78,10 +78,8 @@ public class CreditWrapper implements ITransactionWrapper {
         // As of now, making it hard SUCCESS
         LOGGER.info("Preparing credit transaction successful for request " + requestID);
         String currentTransactionID = AccountHelper.getRandomID();
-        Transaction t = new Transaction(receiverAccount.getNumber(), TransactionType.READY.toString(), amount.getValue(),
-                payeeAccount.getNumber(), Util.getCurrentDateTime(), currentTransactionID, Constants.DEFAULT_TRANS_ID);
-        LOGGER.info("READY => " + t.toString());
-        transactionList.add(t);
+        transactionList.add(new Transaction(receiverAccount.getNumber(), TransactionType.READY.toString(), amount.getValue(),
+                payeeAccount.getNumber(), Util.getCurrentDateTime(), currentTransactionID, Constants.DEFAULT_TRANS_ID));
         status = TransactionStatus.SUCCESS;
         return currentTransactionID;
     }
@@ -95,10 +93,8 @@ public class CreditWrapper implements ITransactionWrapper {
             LOGGER.info("Account locked for committing transaction for request " + requestID + " bank account " + balanceStatus.getAccountNumber());
             balanceStatus.setAvailableAmount(balanceStatus.getAvailableAmount() + amount.getValue());
             balanceStatus.getLock().unlock();
-            Transaction t = new Transaction(receiverAccount.getNumber(), TransactionType.CREDIT.toString(), amount.getValue(),
-                    payeeAccount.getNumber(), Util.getCurrentDateTime(), currentTransactionID, prevTransactionID);
-            LOGGER.info("CREDIT => " + t.toString());
-            transactionList.add(t);
+            transactionList.add(new Transaction(receiverAccount.getNumber(), TransactionType.CREDIT.toString(), amount.getValue(),
+                    payeeAccount.getNumber(), Util.getCurrentDateTime(), currentTransactionID, prevTransactionID));
             status = TransactionStatus.SUCCESS;
             LOGGER.info("Committing transaction successful for request " + requestID);
             return currentTransactionID;

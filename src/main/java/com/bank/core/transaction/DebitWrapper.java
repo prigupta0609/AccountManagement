@@ -59,7 +59,7 @@ public class DebitWrapper implements ITransactionWrapper {
             return this;
         }
 
-        public DebitWrapperBuilder withRecieverAccount (Account account) {
+        public DebitWrapperBuilder withReceiverAccount(Account account) {
             this.receiverAccount = account;
             return this;
         }

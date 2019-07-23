@@ -55,7 +55,7 @@ public class TransactionManager {
         DebitWrapper debitWrapper = new DebitWrapper.DebitWrapperBuilder()
                 .withAccountNumber(payeeAccount)
                 .withAmount(amount)
-                .withRecieverAccount(receiverAccount)
+                .withReceiverAccount(receiverAccount)
                 .withDAO(dao)
                 .build();
         return debitWrapper;

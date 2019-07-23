@@ -7,7 +7,6 @@ import com.bank.dao.user.Customer;
 
 import javax.inject.Singleton;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
 @Singleton
 public class DAO{

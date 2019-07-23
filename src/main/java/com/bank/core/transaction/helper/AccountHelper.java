@@ -33,11 +33,4 @@ public class AccountHelper {
         }
         return null;
     }
-
-    public static void printTransactionRecord (List<Transaction> transactionList, int requestID) {
-        for (Transaction transaction : transactionList) {
-//            if (transaction.getCurrentTransactionID() == transactionID)
-                LOGGER.info("Request ID : " + requestID + " : " + transaction.toString());
-        }
-    }
 }

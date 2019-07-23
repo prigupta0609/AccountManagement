@@ -6,7 +6,6 @@ import com.bank.contract.request.AccountManagementRequest;
 import com.bank.contract.response.AccountManagementResponse;
 import com.bank.contract.response.Error;
 import com.bank.core.transaction.TransactionStatus;
-import com.bank.core.transaction.exception.TransactionFailure;
 import com.bank.dao.core.BalanceStatus;
 
 import java.util.List;
