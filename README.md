@@ -10,18 +10,18 @@
 
     mvn surefire:test -Dtest=FunctionalTest    
      
-#NOTES:
+# NOTES:
 1. Dummy database is stored in data.yml
 2. Sample json request location - AccountManagement/src/test/resources/TransferRequest.json
 3. Thread Group.jmx is added for multi-threaded testing.
 
-#Assumptions:
+# Assumptions:
 1. Accounts are in same bank.
 2. Handles single currency only.
 3. Account validation or user authentication is not taken care of here.
 4. Only one type (saving/current) of account exists.
 
-#Actual implementation scenarios:
+# Actual implementation scenarios:
 1. Account information should be stored in encrypted manner in database in order to prevent security breach.
 2. Exchange rate and other obligations will be applied for inter-currency.
 3. Account transfer in crypto currency and wallets etc should be provided.
