@@ -44,5 +44,5 @@
 # Error scenarios
 1. ValidationException occurs if request is invalid or accounts are invalid.
 2. If preparation of debit or credit fails, TransactionFailure happens.
-3. If commit fails, whole transaction is roll-backed.
+3. If preparation or commit fails, whole transaction is roll-backed.
 4. If error occurs in rollback, TransactionFailure is thrown and the transaction will need manual intervention (manual intervention is not implemented int this as of now).

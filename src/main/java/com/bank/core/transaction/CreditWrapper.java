@@ -15,6 +15,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Handles the credit transactions
+ */
 public class CreditWrapper implements ITransactionWrapper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CreditWrapper.class);
@@ -72,6 +75,12 @@ public class CreditWrapper implements ITransactionWrapper {
         }
     }
 
+    /**
+     * Make all the pre checks for credit operation
+     * @param requestID
+     * @return
+     * @throws TransactionFailure
+     */
     @Override
     public String prepareTransaction(String requestID) throws TransactionFailure {
         // Do all checks here like whether account is freeze or not and accordingly send back the status.
@@ -84,6 +93,16 @@ public class CreditWrapper implements ITransactionWrapper {
         return currentTransactionID;
     }
 
+    /**
+     * 1. Lock the receiver account.
+     * 2. Credit the amount.
+     * 3. Unlock account.
+     * 4. Add transaction record.
+     * @param prevTransactionID
+     * @param requestID
+     * @return
+     * @throws TransactionFailure
+     */
     @Override
     public String commit(String prevTransactionID, String requestID) throws TransactionFailure {
         String currentTransactionID = AccountHelper.getRandomID();
@@ -105,6 +124,14 @@ public class CreditWrapper implements ITransactionWrapper {
         }
     }
 
+    /**
+     * In order to rollback the transaction, debit the amount from reciever's account.
+     * Add new transaction record.
+     * @param prevTransactionID
+     * @param requestID
+     * @return
+     * @throws TransactionFailure
+     */
     @Override
     public String rollback(String prevTransactionID, String requestID) throws TransactionFailure {
         if (balanceStatus != null) {

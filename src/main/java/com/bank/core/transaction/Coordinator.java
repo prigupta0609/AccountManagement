@@ -13,6 +13,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class coordinate the transactions for receiver and payee.
+ */
 public class Coordinator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Coordinator.class);
@@ -22,6 +25,16 @@ public class Coordinator {
     Coordinator() {
     }
 
+    /**
+     * Process steps before making a final transaction.
+     * 1. Pre-process debit & pre-process credit
+     * 2. If any fails, rollback the whole transaction else send success status.
+     * @param creditWrapper
+     * @param debitWrapper
+     * @param requestID
+     * @return
+     * @throws TransactionFailure
+     */
     public TransactionStatus startTransaction (ITransactionWrapper creditWrapper, ITransactionWrapper debitWrapper, String requestID) throws TransactionFailure {
         Future<String> payeeFuture = null;
         Future<String> receiverFuture = null;
@@ -83,6 +96,17 @@ public class Coordinator {
         return transactionID;
     }
 
+    /**
+     * Steps to finally commit the transaction.
+     * 1. Send commit request to payee.
+     * 2. If the debit is successful, then send request for credit. Else rollback the whole transaction.
+     * 3. If credit is successful, send success status else rollback the whole transaction (including debit).
+     * @param receiver
+     * @param payee
+     * @param requestID
+     * @return
+     * @throws TransactionFailure
+     */
     public TransactionStatus commit(ITransactionWrapper receiver, ITransactionWrapper payee, String requestID) throws TransactionFailure {
         TransactionStatus payeeResult = null;
 

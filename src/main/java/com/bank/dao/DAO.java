@@ -9,6 +9,9 @@ import javax.inject.Singleton;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Class with keeps the database in in-memory
+ */
 @Singleton
 public class DAO{
 

@@ -9,6 +9,9 @@ import com.bank.dao.DAO;
 import javax.inject.Singleton;
 import java.util.List;
 
+/**
+ * Validate user and its account
+ */
 @Singleton
 public class AccountValidation {
 

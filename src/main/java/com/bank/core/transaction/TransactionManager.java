@@ -10,6 +10,9 @@ import com.bank.dao.core.Account;
 import javax.inject.Singleton;
 import java.util.List;
 
+/**
+ * First step for handling transactions
+ */
 @Singleton
 public class TransactionManager {
 
@@ -22,6 +25,17 @@ public class TransactionManager {
         return INSTANCE;
     }
 
+    /**
+     * 1. Get account information of payee and receiver.
+     * 2. Register the payee and receiver.
+     * 3. Start transaction and if it is successful, commit the transaction else fail it.
+     * @param receiverAccount
+     * @param payeeAccount
+     * @param amount
+     * @param dao
+     * @return
+     * @throws TransactionFailure
+     */
     public TransactionStatus transfer(Receiver receiverAccount, Payee payeeAccount, Amount amount, DAO dao) throws TransactionFailure {
         this.dao = dao;
         cachedAccountList = dao.getAccount();

@@ -12,6 +12,9 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Application starts with caching the database and registering the resources.
+ */
 public class AccountManagementApplication extends Application<ApplicationConfiguration> {
 
     private static Logger LOGGER = LoggerFactory.getLogger(AccountManagementApplication.class);

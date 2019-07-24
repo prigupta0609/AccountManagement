@@ -19,6 +19,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * Resource class with handles transfer request directly from client.
+ */
 @Path("/account")
 @Resource
 public class AccountManagementResource {
@@ -30,6 +33,13 @@ public class AccountManagementResource {
         this.dao = dao;
     }
 
+    /**
+     * 1. Validate request
+     * 2. Validate accounts
+     * 3. Send transfer request
+     * @param request
+     * @return
+     */
     @POST
     @Path("/transfer")
     @Consumes(value = MediaType.APPLICATION_JSON)

@@ -15,6 +15,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Handles the debit transactions
+ */
 public class DebitWrapper implements ITransactionWrapper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DebitWrapper.class);
@@ -74,6 +77,16 @@ public class DebitWrapper implements ITransactionWrapper {
         }
     }
 
+    /**
+     * 1. Check if account has sufficient balance.
+     * 2. Lock the account.
+     * 3. Hold the amount which is required to be transferred.
+     * 4. Make entry in transaction table for HOLD.
+     * 5. Unlock the account.
+     * @param requestID
+     * @return
+     * @throws TransactionFailure
+     */
     @Override
     public String prepareTransaction(String requestID) throws TransactionFailure {
         String prevTransID = "-1";
@@ -107,6 +120,17 @@ public class DebitWrapper implements ITransactionWrapper {
         }
     }
 
+    /**
+     * 1. Check if account is already hold or not.
+     * 2. Lock account.
+     * 3. Debit the amount.
+     * 4. Release lock.
+     * 5. Add in transaction table.
+     * @param prevTransactionID
+     * @param requestID
+     * @return
+     * @throws TransactionFailure
+     */
     @Override
     public String commit(String prevTransactionID, String requestID) throws TransactionFailure {
         Transaction currentTransRecord = AccountHelper.getCurrentTransRecord(transactionList, prevTransactionID);
@@ -133,6 +157,17 @@ public class DebitWrapper implements ITransactionWrapper {
 
     }
 
+    /**
+     * 1. Every transaction record contains 2 transaction IDs - Current and Previous.
+     *      Current transaction ID helps to identify the current record and Previous helps to link all the transactions that happened
+     *      for single request.
+     * 2. In order to rollback debit, credit needs to be done at payee account.
+     * 3. Transaction record will be added for CREDIT.
+     * @param prevTransactionID
+     * @param requestID
+     * @return
+     * @throws TransactionFailure
+     */
     @Override
     public String rollback(String prevTransactionID, String requestID) throws TransactionFailure {
         Transaction currentTransRecord = AccountHelper.getCurrentTransRecord(transactionList, prevTransactionID);
